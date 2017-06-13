@@ -1,0 +1,10 @@
+
+# guide follow 
+# https://scotch.io/tutorials/build-a-distributed-streaming-system-with-apache-kafka-and-python
+
+# see brew info kafka for how to start
+
+# downlaod sample file from http://www.sample-videos.com/
+
+# to install requirements do:
+# pip install -r /path/to/requirements.txt
