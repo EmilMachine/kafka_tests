@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-from sklearn.datasets import load_iris
 from sklearn import tree
 
 def gen_rules(data_in, target='target'):
@@ -23,8 +22,9 @@ def gen_rules(data_in, target='target'):
     #clf = clf.fit(data_in.data, data_in.target)
 
     #data_name = data_in.feature_names
-    data_name_unicode = list(df.drop([target],axis=1))
-    data_name = map(lambda x : x.encode('ascii','ignore'),data_name_unicode)
+    data_name = list(df.drop([target],axis=1))
+    # python2
+    #data_name = map(lambda x : x.encode('ascii','ignore'),data_name_unicode)
 
 
     feature = clf.tree_.feature
