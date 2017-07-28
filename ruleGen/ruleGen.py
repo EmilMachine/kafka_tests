@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 from sklearn import tree
+import json
+import itertools
 
 def gen_rules(data_in, target='target'):
 
@@ -70,17 +72,20 @@ def gen_rules(data_in, target='target'):
 
 
     def get_hitrate(id):
-        return leaf_vals[id]/leaf_vals[id].sum()
+        ndarray = leaf_vals[id]/leaf_vals[id].sum() # ndarray
+        return list(itertools.chain.from_iterable(ndarray.tolist())) # unests ndarray and turn to list
         
     def get_catchrate(id):    
-        return leaf_vals[id]/leaf_vals[0]
+        ndarray = leaf_vals[id]/leaf_vals[0] # ndarray
+        return list(itertools.chain.from_iterable(ndarray.tolist())) # unest ndarray and turn to list
+        
 
 
     rules = []
     for leaf in leaf_ids:
        rules.append({'id':leaf,'rule':get_rule(leaf),'hitrate':get_hitrate(leaf),'catchrate':get_catchrate(leaf)})
 
-    return rules
+    return json.dumps(rules)
  
 
 if __name__ == '__main__':
@@ -100,5 +105,4 @@ if __name__ == '__main__':
     #rules=gen_rules(data_in,'target')
 
     ### Print rules
-    for r in rules:
-        print(r)
+    print(rules)
